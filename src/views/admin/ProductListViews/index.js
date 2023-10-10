@@ -46,9 +46,10 @@ import DialogRemove from './DialogRemove';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "sku", label: "SKU", alignRight: false },
+  { id: "num", label: "Numero", alignRight: false },
   { id: "name", label: "Foto del Vehiculo", alignRight: false },
   { id: "marca", label: "Marca", alignRight: false },
+  { id: "modelo", label: "Modelo", alignRight: false },
   { id: "ano", label: "Año", alignRight: false },
   { id: "color", label: "Color", alignRight: false },
   { id: "shasis", label: "Shasis", alignRight: false },
@@ -218,8 +219,9 @@ function ProductListView() {
                         name,
                         
                         _id,
-                        sku,
+                        num,
                         marca,
+                        modelo,
                         ano,
                         color,
                         shasis,
@@ -250,7 +252,7 @@ function ProductListView() {
                           {/* <TableCell padding="checkbox">
                             <Checkbox checked={isItemSelected} />
                           </TableCell> */}
-                          <TableCell style={{ minWidth: 100 }}>{sku}</TableCell>
+                          <TableCell style={{ minWidth: 100 }}>{num}</TableCell>
                           {/* 2 */}
                           <TableCell component="th" scope="row" padding="none" style={{ minWidth: 100 }}>
                             <Box
@@ -277,6 +279,9 @@ function ProductListView() {
                           {/* 3 */}
                           <TableCell style={{ minWidth: 100 }}>
                             {marca}
+                          </TableCell>
+                          <TableCell style={{ minWidth: 100 }}>
+                            {modelo}
                           </TableCell>
                           {/* 4 */}
                           <TableCell style={{ minWidth: 100 }}>

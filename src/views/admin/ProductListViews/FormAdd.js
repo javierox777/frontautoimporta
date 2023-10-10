@@ -48,8 +48,9 @@ function General({ className, handleCloseCallback }) {
   const [file, setFile] = useState(null);
 
   const UpdateUserSchema = Yup.object().shape({
-    sku: Yup.string().required("Este campo es obligatorio"),
+    num: Yup.string().required("Este campo es obligatorio"),
     marca: Yup.string().required("Este campo es obligatorio"),
+    modelo: Yup.string().required("Este campo es obligatorio"),
     ano: Yup.string().required("Este campo es obligatorio"),
     color: Yup.string().required("Este campo es obligatorio"),
     shasis: Yup.string().required("Este campo es obligatorio"),
@@ -70,8 +71,9 @@ function General({ className, handleCloseCallback }) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      sku:"",
+      num:"",
       marca:"", 
+      modelo:"",
       ano:"", 
       color:"", 
       shasis:"",
@@ -90,8 +92,9 @@ function General({ className, handleCloseCallback }) {
         enqueueSnackbar("Selecciona una imágen", { variant: "warning" });
       } else {
         const formdata = new FormData();
-        formdata.append("sku", values.sku);
+        formdata.append("num", values.num);
         formdata.append('marca', values.marca);
+        formdata.append('modelo', values.modelo);
         formdata.append('ano', values.ano);
         formdata.append('color', values.color);
         formdata.append('shasis', values.shasis);
@@ -149,14 +152,14 @@ function General({ className, handleCloseCallback }) {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
-                    label="SKU"
-                    {...getFieldProps("sku")}
+                    label="NUMERO"
+                    {...getFieldProps("num")}
                     error={
-                      Boolean(touched.sku && errors.sku) ||
+                      Boolean(touched.num && errors.num) ||
                       skuProductError(errors.afterSubmit).error
                     }
                     helperText={
-                      (touched.sku && errors.sku) ||
+                      (touched.num && errors.num) ||
                       skuProductError(errors.afterSubmit).helperText
                     }
                   />
@@ -173,6 +176,21 @@ function General({ className, handleCloseCallback }) {
                     }
                     helperText={
                       (touched.marca && errors.marca) ||
+                      nameProductError(errors.afterSubmit).helperText
+                    }
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="Modelo"
+                    {...getFieldProps("modelo")}
+                    error={
+                      Boolean(touched.modelo && errors.modelo) ||
+                      nameProductError(errors.afterSubmit).error
+                    }
+                    helperText={
+                      (touched.modelo && errors.modelo) ||
                       nameProductError(errors.afterSubmit).helperText
                     }
                   />
