@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Page from 'src/components/Page';
 import { PATH_HOME } from 'src/routes/paths';
 import { makeStyles } from '@material-ui/core/styles';
-import { getSaleList } from "src/redux/slices/product";
-import {useDispatch, useSelector} from 'react-redux';
+import { getSaleList } from 'src/redux/slices/product';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   Grid,
   Container,
   CardHeader,
-  CardContent
+  CardContent,
 } from '@material-ui/core';
 // ----------------------------------------------------------------------
 
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     height: 420,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 }));
 
 function Apexcharts() {
@@ -38,9 +38,7 @@ function Apexcharts() {
   return (
     <Page title="Inicio | Control de inventario" className={classes.root}>
       <Container maxWidth="lg">
-
         <Grid container spacing={3}>
-
           <Grid item xs={12} md={12}>
             <Card>
               <CardHeader title="Total de ventas por mes" />
@@ -49,7 +47,6 @@ function Apexcharts() {
               </CardContent>
             </Card>
           </Grid>
-
         </Grid>
       </Container>
     </Page>
