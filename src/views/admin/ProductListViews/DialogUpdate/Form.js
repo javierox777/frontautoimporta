@@ -51,8 +51,9 @@ function General({ className, handleCloseCallback, product }) {
 
 
   const UpdateUserSchema = Yup.object().shape({
-    sku: Yup.string().required("Este campo es obligatorio"),
+   
     marca: Yup.string().required("Este campo es obligatorio"),
+    modelo: Yup.string().required("Este campo es obligatorio"),
     ano: Yup.string().required("Este campo es obligatorio"),
     color: Yup.string().required("Este campo es obligatorio"),
     shasis: Yup.string().required("Este campo es obligatorio"),
@@ -71,8 +72,9 @@ function General({ className, handleCloseCallback, product }) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      sku: product.sku,
+    
       marca: product.marca,
+      modelo: product.modelo,
       ano: product.ano,
       color: product.color,
       shasis: product.shasis,
@@ -87,20 +89,6 @@ function General({ className, handleCloseCallback, product }) {
     onSubmit: async (values, { setErrors, setSubmitting }) => {
 
       let notify = '';
-
-      if (product.sku === values.sku && product.shasis === values.shasis) {
-        notify = 'sin_cambios';
-      } else {
-        if (product.sku !== values.sku && product.shasis !== values.shasis) {
-          notify = 'sku_name'
-        } else {
-          if (product.sku !== values.sku && product.shasis === values.shasis) {
-            notify = 'sku';
-          } else if (product.shasis !== values.shasis && product.sku === values.sku) {
-            notify = 'shasis';
-          }
-        }
-      }
 
       values._id = product._id;
       values.notify = notify;
@@ -149,27 +137,20 @@ function General({ className, handleCloseCallback, product }) {
           <Grid container spacing={3}>
             <Grid item xs={12} md={12}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    fullWidth
-                    label="SKU"
-                    {...getFieldProps("sku")}
-                    error={
-                      Boolean(touched.sku && errors.sku) ||
-                      skuProductError(errors.afterSubmit).error
-                    }
-                    helperText={
-                      (touched.sku && errors.sku) ||
-                      skuProductError(errors.afterSubmit).helperText
-                    }
-                  />
-                </Grid>
 
                 <Grid item xs={12} sm={12}>
                   <TextField
                     fullWidth
                     label="Marca"
                     {...getFieldProps("marca")}
+                  
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <TextField
+                    fullWidth
+                    label="Modelo"
+                    {...getFieldProps("modelo")}
                   
                   />
                 </Grid>

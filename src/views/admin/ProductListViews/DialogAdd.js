@@ -27,11 +27,11 @@ function FormDialogs() {
   return (
     <>
       <MButton variant="contained" color="primary" onClick={handleClickOpen}>
-        Agregar nuevo producto
+        Agregar nuevo vehiculo
       </MButton>
 
       <Dialog open={open} maxWidth="md" onClose={handleClose}>
-        <DialogTitle>Crear producto</DialogTitle>
+        <DialogTitle>Crear vehiculo</DialogTitle>
         <DialogContent>
           <FormAdd handleCloseCallback={handleClose}  />
         </DialogContent>

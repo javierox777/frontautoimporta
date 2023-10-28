@@ -62,10 +62,10 @@ function DialogRemove({id}) {
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{"Eliminar producto"}</DialogTitle>
+        <DialogTitle>{"Eliminar vehiculo"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            ¿Está seguro que desea eliminar este producto?
+            ¿Está seguro que desea eliminar este vehiculo?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
