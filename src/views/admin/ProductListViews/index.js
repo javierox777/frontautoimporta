@@ -257,7 +257,7 @@ function ProductListView() {
                           {/* <TableCell padding="checkbox">
                             <Checkbox checked={isItemSelected} />
                           </TableCell> */}
-                          <TableCell style={{ minWidth: 100 }}>{num}</TableCell>
+                          <TableCell style={{ minWidth: 100 }}>{index  + 1}</TableCell>
                           {/* 2 */}
                           <TableCell component="th" scope="row" padding="none" style={{ minWidth: 100 }}>
                             <Box
