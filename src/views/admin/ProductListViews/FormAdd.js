@@ -48,7 +48,7 @@ function General({ className, handleCloseCallback }) {
   const [file, setFile] = useState(null);
 
   const UpdateUserSchema = Yup.object().shape({
-    num: Yup.string().required("Este campo es obligatorio"),
+    
     marca: Yup.string().required("Este campo es obligatorio"),
     modelo: Yup.string().required("Este campo es obligatorio"),
     ano: Yup.string().required("Este campo es obligatorio"),
@@ -71,7 +71,7 @@ function General({ className, handleCloseCallback }) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      num:"",
+    
       marca:"", 
       modelo:"",
       ano:"", 
@@ -92,7 +92,7 @@ function General({ className, handleCloseCallback }) {
         enqueueSnackbar("Selecciona una imágen", { variant: "warning" });
       } else {
         const formdata = new FormData();
-        formdata.append("num", values.num);
+     
         formdata.append('marca', values.marca);
         formdata.append('modelo', values.modelo);
         formdata.append('ano', values.ano);
@@ -149,21 +149,6 @@ function General({ className, handleCloseCallback }) {
           <Grid container spacing={3}>
             <Grid item xs={12} md={12}>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    label="NUMERO"
-                    {...getFieldProps("num")}
-                    error={
-                      Boolean(touched.num && errors.num) ||
-                      skuProductError(errors.afterSubmit).error
-                    }
-                    helperText={
-                      (touched.num && errors.num) ||
-                      skuProductError(errors.afterSubmit).helperText
-                    }
-                  />
-                </Grid>
 
                 <Grid item xs={12} sm={6}>
                   <TextField

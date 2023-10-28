@@ -87,7 +87,12 @@ function applySortFilter(array, comparator, query) {
 
   if (query) {
     array = filter(array, (_product) => {
-      return _product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.sku.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+
+      return _product.marca.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.modelo.toLowerCase().indexOf(query.toLowerCase()) !== -1 
+      || _product.shasis.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.transmicion.toLowerCase().indexOf(query.toLowerCase()) !== -1 
+      || _product.ano.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.color.toLowerCase().indexOf(query.toLowerCase()) !== -1  
+      || _product.cilin.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.traccion.toLowerCase().indexOf(query.toLowerCase()) !== -1 
+      || _product.price.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1
     });
     return array;
   }
@@ -178,7 +183,7 @@ function ProductListView() {
     <Page title="Productos | Control de inventario" className={classes.root}>
       <Container>
         <HeaderDashboard
-          heading="Lista de productos"
+          heading="Lista de vehiculos"
           links={[
             { name: "Inicio", href: PATH_ADMIN.root },
             { name: "Productos" },
@@ -216,7 +221,7 @@ function ProductListView() {
                     .map((row, index) => {
                       const {
                         
-                        name,
+                       
                         
                         _id,
                         num,
@@ -236,7 +241,7 @@ function ProductListView() {
                       
                       } = row;
 
-                      const isItemSelected = selected.indexOf(name) !== -1;
+                      const isItemSelected = selected.indexOf(modelo) !== -1;
 
                       return (
                         <TableRow
@@ -263,7 +268,7 @@ function ProductListView() {
                               }}
                             >
                               <LazySize style={{ minWidth: 100 }}
-                                alt={name}
+                                alt={modelo}
                                 src={generalConfig.baseUrl + path}
                                 sx={{
                                   mx: 2,
