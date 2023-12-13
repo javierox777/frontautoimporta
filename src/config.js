@@ -23,7 +23,7 @@ export const cloudinaryConfig = {
 export const googleAnalyticsConfig = process.env.REACT_APP_GA_MEASUREMENT_ID;
 
 export const generalConfig = {
-  baseUrl: 'http://localhost:3005',
+ // baseUrl: 'http://localhost:3000',
   // baseUrl: 'http://25.54.199.107:3000'
-  // baseUrl: 'http://jupaz.ddns.net:3010'
+  baseUrl:  "https://backendauto.onrender.com" //render
 };
