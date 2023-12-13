@@ -1,22 +1,22 @@
-import { filter } from "lodash";
-import HeadTable from "./HeadTable";
-import { Icon } from "@iconify/react";
-import Page from "src/components/Page";
-import ToolbarTable from "./ToolbarTable";
-import { sentenceCase } from "change-case";
-import { PATH_ADMIN } from "src/routes/paths";
-import { fDate } from "src/utils/formatTime";
-import LazySize from "src/components/LazySize";
-import { fCurrency } from "src/utils/formatNumber";
-import React, { useState, useEffect } from "react";
-import Scrollbars from "src/components/Scrollbars";
-import { visuallyHidden } from "@material-ui/utils";
-import { HeaderDashboard } from "src/layouts/Common";
-import { getProducts } from "src/redux/slices/product";
-import { useDispatch, useSelector } from "react-redux";
-import SearchNotFound from "src/components/SearchNotFound";
-import moreVerticalFill from "@iconify-icons/eva/more-vertical-fill";
-import { useTheme, makeStyles } from "@material-ui/core/styles";
+import { filter } from 'lodash';
+import HeadTable from './HeadTable';
+import { Icon } from '@iconify/react';
+import Page from 'src/components/Page';
+import ToolbarTable from './ToolbarTable';
+import { sentenceCase } from 'change-case';
+import { PATH_ADMIN } from 'src/routes/paths';
+import { fDate } from 'src/utils/formatTime';
+import LazySize from 'src/components/LazySize';
+import { fCurrency } from 'src/utils/formatNumber';
+import React, { useState, useEffect } from 'react';
+import Scrollbars from 'src/components/Scrollbars';
+import { visuallyHidden } from '@material-ui/utils';
+import { HeaderDashboard } from 'src/layouts/Common';
+import { getProducts } from 'src/redux/slices/product';
+import { useDispatch, useSelector } from 'react-redux';
+import SearchNotFound from 'src/components/SearchNotFound';
+import moreVerticalFill from '@iconify-icons/eva/more-vertical-fill';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import {
   Box,
   Card,
@@ -31,13 +31,13 @@ import {
   TableContainer,
   TablePagination,
   Hidden,
-} from "@material-ui/core";
-import { MLabel } from "src/theme";
+} from '@material-ui/core';
+import { MLabel } from 'src/theme';
 import { generalConfig } from '../../../config';
 
 // ----------------------------------------------------------------------
 
-import DialogAdd from "./DialogAdd";
+import DialogAdd from './DialogAdd';
 import DialogUpdateImage from './DialogUpdateImage';
 import DialogUpdate from './DialogUpdate';
 import DialogUpdateStock from './DialogUpdateStock';
@@ -46,20 +46,20 @@ import DialogRemove from './DialogRemove';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "num", label: "Numero", alignRight: false },
-  { id: "name", label: "Foto del Vehiculo", alignRight: false },
-  { id: "marca", label: "Marca", alignRight: false },
-  { id: "modelo", label: "Modelo", alignRight: false },
-  { id: "ano", label: "Año", alignRight: false },
-  { id: "color", label: "Color", alignRight: false },
-  { id: "shasis", label: "Shasis", alignRight: false },
-  { id: "transmicion", label: "Transmición", alignRight: false },
-  { id: "cilin", label: "cilin", alignRight: false },
-  { id: "traccion", label: "Tracción", alignRight: false },
-  { id: "description", label: "Description", alignRight: false },
-  { id: "price", label: "Precio", alignRight: false },
-  { id: "stock", label: "Stock", alignRight: false },
-  { id: "" },
+  { id: 'num', label: 'Numero', alignRight: false },
+  { id: 'name', label: 'Foto del Vehiculo', alignRight: false },
+  { id: 'marca', label: 'Marca', alignRight: false },
+  { id: 'modelo', label: 'Modelo', alignRight: false },
+  { id: 'ano', label: 'Año', alignRight: false },
+  { id: 'color', label: 'Color', alignRight: false },
+  { id: 'shasis', label: 'Shasis', alignRight: false },
+  { id: 'transmicion', label: 'Transmición', alignRight: false },
+  { id: 'cilin', label: 'cilin', alignRight: false },
+  { id: 'traccion', label: 'Tracción', alignRight: false },
+  { id: 'description', label: 'Description', alignRight: false },
+  { id: 'price', label: 'Precio', alignRight: false },
+  { id: 'stock', label: 'Stock', alignRight: false },
+  { id: '' },
 ];
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -72,7 +72,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -87,12 +87,19 @@ function applySortFilter(array, comparator, query) {
 
   if (query) {
     array = filter(array, (_product) => {
-
-      return _product.marca.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.modelo.toLowerCase().indexOf(query.toLowerCase()) !== -1 
-      || _product.shasis.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.transmicion.toLowerCase().indexOf(query.toLowerCase()) !== -1 
-      || _product.ano.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.color.toLowerCase().indexOf(query.toLowerCase()) !== -1  
-      || _product.cilin.toLowerCase().indexOf(query.toLowerCase()) !== -1 || _product.traccion.toLowerCase().indexOf(query.toLowerCase()) !== -1 
-      || _product.price.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1
+      return (
+        _product.marca.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.modelo.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.shasis.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.transmicion.toLowerCase().indexOf(query.toLowerCase()) !==
+          -1 ||
+        _product.ano.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.color.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.cilin.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.traccion.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
+        _product.price.toString().toLowerCase().indexOf(query.toLowerCase()) !==
+          -1
+      );
     });
     return array;
   }
@@ -112,19 +119,19 @@ function ProductListView() {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.product);
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
-  const [filterName, setFilterName] = useState("");
+  const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [orderBy, setOrderBy] = useState("date");
+  const [orderBy, setOrderBy] = useState('date');
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
@@ -185,8 +192,8 @@ function ProductListView() {
         <HeaderDashboard
           heading="Lista de vehiculos"
           links={[
-            { name: "Inicio", href: PATH_ADMIN.root },
-            { name: "Productos" },
+            { name: 'Inicio', href: PATH_ADMIN.root },
+            { name: 'Productos' },
           ]}
           action={
             <Hidden smDown>
@@ -213,16 +220,13 @@ function ProductListView() {
                   rowCount={products.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
-                // onSelectAllClick={handleSelectAllClick}
+                  // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredProducts
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
                       const {
-                        
-                       
-                        
                         _id,
                         num,
                         marca,
@@ -235,10 +239,9 @@ function ProductListView() {
                         traccion,
                         description,
                         price,
-                        stock,    
+                        stock,
                         filename,
                         path,
-                      
                       } = row;
 
                       const isItemSelected = selected.indexOf(modelo) !== -1;
@@ -257,29 +260,35 @@ function ProductListView() {
                           {/* <TableCell padding="checkbox">
                             <Checkbox checked={isItemSelected} />
                           </TableCell> */}
-                          <TableCell style={{ minWidth: 100 }}>{index  + 1}</TableCell>
+                          <TableCell style={{ minWidth: 100 }}>
+                            {index + 1}
+                          </TableCell>
                           {/* 2 */}
-                          <TableCell component="th" scope="row" padding="none" style={{ minWidth: 100 }}>
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            padding="none"
+                            style={{ minWidth: 100 }}
+                          >
                             <Box
                               sx={{
                                 py: 2,
-                                display: "flex",
-                                alignItems: "center",
+                                display: 'flex',
+                                alignItems: 'center',
                               }}
                             >
-                              <LazySize style={{ minWidth: 100 }}
+                              <LazySize
+                                style={{ minWidth: 100 }}
                                 alt={modelo}
                                 src={generalConfig.baseUrl + path}
                                 sx={{
                                   mx: 2,
                                   width: 64,
                                   height: 64,
-                                  borderRadius: 1.5
+                                  borderRadius: 1.5,
                                 }}
                               />
-
                             </Box>
-
                           </TableCell>
                           {/* 3 */}
                           <TableCell style={{ minWidth: 100 }}>
@@ -289,9 +298,7 @@ function ProductListView() {
                             {modelo}
                           </TableCell>
                           {/* 4 */}
-                          <TableCell style={{ minWidth: 100 }}>
-                            {ano}
-                          </TableCell>
+                          <TableCell style={{ minWidth: 100 }}>{ano}</TableCell>
                           {/* 5 */}
                           <TableCell style={{ minWidth: 100 }}>
                             {color}
@@ -317,21 +324,21 @@ function ProductListView() {
                             {description}
                           </TableCell>
                           {/* 11 */}
-                          
+
                           <TableCell style={{ minWidth: 100 }}>
                             {fCurrency(price)}
                           </TableCell>
                           <TableCell style={{ minWidth: 100 }}>
                             <MLabel
                               variant={
-                                theme.palette.mode === "light"
-                                  ? "ghost"
-                                  : "filled"
+                                theme.palette.mode === 'light'
+                                  ? 'ghost'
+                                  : 'filled'
                               }
                               color={
-                                (stock === 0 && "error") ||
-                                (stock < 5 && "warning") ||
-                                "success"
+                                (stock === 0 && 'error') ||
+                                (stock < 5 && 'warning') ||
+                                'success'
                               }
                             >
                               {sentenceCase(stock.toString())}
